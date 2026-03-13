@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Vashnavi</title>
+
+<style>
+/* General */
+*{box-sizing:border-box;}
+body{
+margin:0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+text-align:center;
+background: linear-gradient(135deg, #ff6a88, #ff99ac);
+color: white;
+overflow-x: hidden;
+transition: background 0.5s;
+}
+
+.page{
+display:none;
+padding:20px;
+transition: all 0.5s;
+}
+
+.active{
+display:block;
+}
+
+/* Buttons */
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-top:15px;
+}
+
+nav button{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:white;
+color:#ff4e50;
+font-size:16px;
+cursor:pointer;
+transition: all 0.3s;
+}
+
+nav button:hover{
+background:#ff4e50;
+color:white;
+transform:scale(1.05);
+}
+
+/* Gift */
+.gift{
+font-size:22vw;
+cursor:pointer;
+display:inline-block;
+padding:10px;
+border:3px solid white;
+border-radius:20px;
+transition: transform 0.5s;
+}
+
+.gift:hover{
+transform: scale(1.1) rotate(-10deg);
+}
+
+/* Cake */
+.cake{
+font-size:25vw;
+cursor:pointer;
+display:inline-block;
+transition: transform 0.5s;
+}
+
+.cake:hover{
+transform: scale(1.05);
+}
+
+/* Bouquet */
+#bouquet{
+font-size:22vw;
+margin-top:20px;
+display:none;
+animation:pop 0.8s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(0);}
+100%{transform:scale(1);}
+}
+
+/* Game */
+#gameArea{
+position:relative;
+width:100%;
+height:45vh;
+border:2px dashed white;
+margin-top:20px;
+overflow:hidden;
+}
+
+#cakeGame{
+position:absolute;
+font-size:12vw;
+cursor:pointer;
+transition: all 0.2s;
+}
+
+/* Input */
+input, textarea{
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:16px;
+width:70%;
+max-width:300px;
+margin-top:10px;
+}
+
+/* Social */
+.social{
+font-size:18vw;
+margin-top:20px;
+}
+
+/* Headings */
+h1{font-size:28px; margin-bottom:10px;}
+h2{font-size:22px; margin-top:15px;}
+
+/* Confetti animation */
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+background:white;
+top:0;
+animation:fall 3s linear infinite;
+opacity:0.8;
+border-radius:50%;
+z-index:1000;
+}
+
+@keyframes fall{
+0%{transform: translateY(0) rotate(0deg);}
+100%{transform: translateY(100vh) rotate(360deg);}
+}
+
+/* Greeting Card Animation */
+#greetingCard{
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+#greetingCard.show{
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width:600px){
+h1{font-size:24px;}
+nav button{font-size:15px;padding:10px 15px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home" class="page active">
+<h1>Happy Birthday Vashnavi</h1>
+<p>from pxt_editz._</p>
+
+<div class="gift" onclick="openGift()">Gift</div>
+
+<div id="menu" style="display:none">
+<nav>
+<button onclick="showPage('cake')">Cake</button>
+<button onclick="showPage('game')">Game</button>
+<button onclick="showPage('secret')">Secret</button>
+<button onclick="showPage('age')">Age</button>
+<button onclick="showPage('social')">Social</button>
+<button onclick="showPage('wish')">Birthday Wish</button>
+<button onclick="showPage('surprise')">Surprise Gift</button>
+<button onclick="showPage('feedback')">Feedback</button>
+<button onclick="showPage('astroTalk')">Sasta AstroTalk</button>
+</nav>
+</div>
+
+<!-- GREETING CARD -->
+<div id="greetingCard" style="background:white; color:#ff4e50; padding:30px; margin-top:30px; border-radius:15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); max-width:600px; margin-left:auto; margin-right:auto;">
+  <h2 style="font-size:24px; margin-bottom:15px;">A Special Greeting for Vashnavi!</h2>
+  <p style="font-size:18px; line-height:1.5;">
+    Dear Vashnavi,<br>
+    May your birthday be as bright and amazing as your smile, and may the year ahead bring you endless happiness, love, and wonderful surprises!
+  </p>
+  <p style="margin-top:20px; font-weight:bold; font-size:18px;">With lots of love, <br> pxt_editz._</p>
+</div>
+</div>
+
+<!-- CAKE -->
+<div id="cake" class="page">
+<h1>Cut the Cake</h1>
+<div id="cakeIcon" class="cake" onclick="cutCake()">Cake</div>
+
+<h2>Blow Candle</h2>
+<div class="cake" onclick="blowCandle()">Candle</div>
+
+<div id="bouquet">
+Bouquet
+<p style="font-size:20px;">For you Vashu</p>
+</div>
+
+<br>
+<button onclick="playMusic()">Play Birthday Song</button>
+<br><br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- GAME -->
+<div id="game" class="page">
+<h1>Catch The Cake</h1>
+<div id="gameArea">
+<div id="cakeGame">Cake</div>
+</div>
+<p>Score: <span id="score">0</span></p>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- SECRET -->
+<div id="secret" class="page">
+<h1>Secret Message</h1>
+<button onclick="showMessage()">Open Message</button>
+<p id="msg" style="font-size:22px;margin-top:20px;"></p>
+<br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- AGE -->
+<div id="age" class="page">
+<h1>Age Calculator</h1>
+<p>Enter Date of Birth</p>
+<input type="date" id="dob">
+<br><br>
+<button onclick="calculateAge()">Calculate Age</button>
+<h2 id="ageResult"></h2>
+<br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- SOCIAL -->
+<div id="social" class="page">
+<h1>My Social Media</h1>
+<div class="social">Instagram</div>
+<h2>Instagram</h2>
+<p>@pxt_editz_.</p>
+<a href="https://www.instagram.com/pxt_editz._?igsh=MXNkYXpmbXRqdm9qeA==" target="_blank">
+<button>Follow on Instagram</button></a>
+<br><br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- BIRTHDAY WISH -->
+<div id="wish" class="page">
+<h1>Special Birthday Wish!</h1>
+<p style="font-size:22px; margin-top:20px;">
+Vaishnavi, wishing you all the happiness, love, and fun on your special day! 
+May your year ahead be full of amazing memories and dreams come true!
+</p>
+<div style="margin-top:20px; font-size:20px; font-weight:bold;">
+Happy Birthday, Vashu!
+</div>
+<br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- SURPRISE GIFT -->
+<div id="surprise" class="page">
+<h1>Surprise Gift!</h1>
+<p>Click the gift to see your “special surprise”</p>
+<div class="gift" onclick="surpriseGift()">🎁</div>
+<h2 id="surpriseMsg" style="margin-top:20px; font-size:22px;"></h2>
+<br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- FEEDBACK -->
+<div id="feedback" class="page">
+<h1>Feedback</h1>
+<p>Vashu, agar apko hamra ee mehnat accha laga hi to tanik taarif kardijiga</p>
+<textarea id="feedbackText" rows="4" placeholder="Type your feedback here..."></textarea>
+<br><br>
+<button onclick="submitFeedback()">Submit</button>
+<h2 id="feedbackMsg" style="margin-top:20px;"></h2>
+<br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<!-- SASTA ASTROTALK -->
+<div id="astroTalk" class="page">
+<h1>Sasta AstroTalk</h1>
+<p>Click the button below to see your future</p>
+<button onclick="seeFuture()" style="padding:12px 20px; border:none; border-radius:10px; font-size:16px; cursor:pointer;">See My Future</button>
+<h2 id="futureMsg" style="margin-top:20px; font-size:22px;"></h2>
+<br>
+<button onclick="showPage('home')">Back</button>
+</div>
+
+<audio id="music" src="https://www.myinstants.com/media/sounds/happy-birthday-to-you.mp3"></audio>
+
+<script>
+/* Confetti generator */
+function createConfetti(){
+for(let i=0;i<50;i++){
+let c=document.createElement('div');
+c.classList.add('confetti');
+c.style.left=Math.random()*100+'vw';
+c.style.background='hsl('+Math.random()*360+', 100%, 75%)';
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+
+/* Gift */
+function openGift(){
+document.querySelector(".gift").style.display="none";
+document.getElementById("menu").style.display="block";
+createConfetti();
+}
+
+/* Navigation with greeting animation */
+function showPage(page){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(page).classList.add("active");
+if(page==='home'){
+  animateGreeting();
+}
+if(page==='wish' || page==='surprise' || page==='astroTalk'){
+    createConfetti();
+  }
+}
+
+/* Animate greeting card */
+function animateGreeting(){
+  const card = document.getElementById("greetingCard");
+  card.classList.add("show");
+}
+
+/* Cake */
+function cutCake(){
+document.getElementById("cakeIcon").innerHTML="Cake Cut!";
+alert("Cake Cut! Happy Birthday Vashnavi");
+}
+
+/* Candle */
+function blowCandle(){
+document.getElementById("bouquet").style.display="block";
+createConfetti();
+}
+
+/* Music */
+function playMusic(){
+document.getElementById("music").play();
+}
+
+/* Secret */
+function showMessage(){
+document.getElementById("msg").innerHTML=
+"Once again Happy Birthday Vashu";
+}
+
+/* Game */
+let score=0;
+let cake=document.getElementById("cakeGame");
+
+function moveCake(){
+let area=document.getElementById("gameArea");
+cake.style.left=Math.random()*(area.clientWidth-50)+"px";
+cake.style.top=Math.random()*(area.clientHeight-50)+"px";
+}
+
+cake.onclick=function(){
+score++;
+document.getElementById("score").innerText=score;
+moveCake();
+}
+
+setInterval(moveCake,900);
+
+/* Age Calculator */
+function calculateAge(){
+let dob=document.getElementById("dob").value;
+if(!dob){alert("Enter date of birth");return;}
+let birthDate=new Date(dob);
+let today=new Date();
+let age=today.getFullYear()-birthDate.getFullYear();
+let m=today.getMonth()-birthDate.getMonth();
+if(m<0 || (m===0 && today.getDate()<birthDate.getDate())){age--;}
+document.getElementById("ageResult").innerHTML="Age is "+age+" years";
+}
+
+/* Surprise Gift */
+function surpriseGift(){
+  const messages = [
+    "Oops! It's empty",
+    "Just kidding! Try again later",
+    "Surprise! You got a virtual hug",
+    "Haha! Nothing here but love"
+  ];
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+  document.getElementById("surpriseMsg").innerText = msg;
+  createConfetti();
+}
+
+/* Feedback */
+function submitFeedback(){
+  let text = document.getElementById("feedbackText").value;
+  if(text.trim()===""){
+    alert("Please write something first!");
+    return;
+  }
+  document.getElementById("feedbackMsg").innerText = "Thank you for your feedback!";
+  document.getElementById("feedbackText").value = "";
+}
+
+/* Sasta AstroTalk */
+function seeFuture(){
+  document.getElementById("futureMsg").innerText = 
+  "Your future is too good! You will achieve all things soon!";
+  createConfetti();
+}
+
+/* Animate greeting on load if Home is active */
+window.addEventListener('load', () => {
+  if(document.getElementById("home").classList.contains("active")){
+    animateGreeting();
+  }
+});
+</script>
+</body>
+</html>
